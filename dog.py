@@ -20,22 +20,22 @@ def sendPhoto(chat_id, text, photo, message_id):
     params = {'chat_id': chat_id, 'photo': photo, 'reply_to_message_id': message_id}
     
     URL = f'https://api.telegram.org/bot{TOKEN}/sendPhoto'
-    if text == '/dog':
+    if text == 'Dog':
         r = requests.post(URL, params=params)
         return r.json()
-    else: #boshqa text kelib qolganda xatolik bermasligi uchun if else yozdim.
+    else:
         pass
 
 lastUpdId = -1
 while True:
     r = requests.get('https://random.dog/woof.json')
     i = r.json()
-    image = i['url']
+    imge = i['url']
 
     result = getUpd()
     chat_id, text, update_id, message_id = getLastUpd(result)
     print(message_id)
     if update_id != lastUpdId:
-        sendPhoto(chat_id, text, imgage, message_id)
+        sendPhoto(chat_id, text, imge, message_id)
         lastUpdId = update_id
-    sleep(2)
+    sleep(1)
